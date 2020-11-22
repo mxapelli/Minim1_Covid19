@@ -15,12 +15,11 @@ public class Caso {
     Date fechaNacimiento, fechaInforme;
     String nivelRiesgo, classificacion;
     int telefono;
-    //Constructor sin inicializacion
+    //Constructor vacio
     public Caso(){
-
     }
 
-    //Creando un caso con todos los campos
+    //Constructor caso
     public Caso( String idCaso,String nombre, String apellidos, String genero, String correo, String direccion, Date fechaNacimiento,Date fechaInforme, String nivelRiesgo, String classificacion, int telefono) {
         this.fechaInforme = fechaInforme;
         this.nombre = nombre;
