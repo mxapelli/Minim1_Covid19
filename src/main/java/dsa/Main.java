@@ -15,7 +15,7 @@ import java.net.URI;
 public class Main {
     static final Logger logger = Logger.getLogger(Main.class);
     // Base URI the Grizzly HTTP server will listen on
-    public static final String BASE_URI = "http://localhost:8080/minimo1/";
+    public static final String BASE_URI = "http://localhost:8080/minim1/";
 
     /**
      * Starts Grizzly HTTP server exposing JAX-RS resources defined in this application.
@@ -32,7 +32,7 @@ public class Main {
         BeanConfig beanConfig = new BeanConfig();
 
         beanConfig.setHost("localhost:8080");
-        beanConfig.setBasePath("/minimo1");
+        beanConfig.setBasePath("/minim1");
         beanConfig.setContact("marc.xapelli@estudiantat.upc.edu");
         beanConfig.setDescription("REST API for Covid Manager by Marc Xapelli");
         beanConfig.setLicenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html");
@@ -69,11 +69,12 @@ public class Main {
         // System.out.println(String.format("Jersey app started with WADL available at "
         //   + "%s application.wadl\nHit enter to stop it...", BASE_URI));
         //Formatting BASE_URI FOR SWAGGER
+        System.out.println(String.format("RestApi Started at " + "%s", BASE_URI));
         String swagger_uri = BASE_URI;
-        String target = "minimo1";
+        String target = "minim1";
         String replacement = "swagger";
         swagger_uri = swagger_uri.replace(target, replacement);
-        System.out.println(String.format("RestApi Started at " + "%s\nHit enter to stop it...", swagger_uri));
+        System.out.println(String.format("Swagger link: " + "%s\nHit enter to stop it...", swagger_uri));
         System.in.read();
         server.shutdownNow();
     }
