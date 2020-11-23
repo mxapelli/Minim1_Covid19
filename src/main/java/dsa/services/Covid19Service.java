@@ -21,7 +21,7 @@ import java.util.List;
 
 //Models or Element Entity
 //Swagger Imports
-@Api(value = "/covid19", description = "Endpoint to User Service")
+@Api(value = "/Covid19", description = "Endpoint to User Service")
 @Path("/Covid19Service")
 public class Covid19Service {
     static final Logger logger = Logger.getLogger(Covid19Service.class);
@@ -44,7 +44,7 @@ public class Covid19Service {
             Date dataInforme = new Date(2020,04,12,05,10,10);
             //Caso( String idCaso,String nombre, String apellidos, String genero, String correo, String direccion, Date fechaNacimiento,Date fechaInforme, String nivelRiesgo, String classificacion, int telefono)
             listaCasos.add(new Caso("001","Marc","Xapelli","M","m.xapelli@gmail.com","Barcelona, Spain", dataNacimiento,dataInforme,"medio","confirmado",63848619));
-            listaCasos.add(new Caso("002","Nelutu","Avram","M","n.avram@gmail.com","Bukarest, Romania", dataNacimiento,dataInforme,"bajo","sospechoso",622456789));
+            listaCasos.add(new Caso("002","Nelutu","Avram","M","n.avram@gmail.com","Bukarest, Romania", dataNacimiento,dataInforme,"bajo","no caso",622456789));
             listaCasos.add(new Caso("003","Linus","Chinchilla","M","l.chinchilla@gmail.com","Andes, Xile", dataNacimiento,dataInforme,"medio","sospechoso",666666666));
             listaCasos.add(new Caso("004","Lana","Rhoades","F","lana@gmail.com","Chicago, United States", dataNacimiento,dataInforme,"bajo","no caso",657432997));
             brote = new Brote("001","MERS",listaCasos);
@@ -58,7 +58,7 @@ public class Covid19Service {
     //When multiple GET, PUT, POSTS & DELETE EXIST on the same SERVICE, path must be aggregated
     //Lista de Brotes
     @GET
-    @ApiOperation(value = "Get all Brotes", notes = "Retrieves the list of Brotes")
+    @ApiOperation(value = "Get all brotes", notes = "Retrieves the list of brotes")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Successful", response = Brote.class, responseContainer="List"),
     })
@@ -72,18 +72,18 @@ public class Covid19Service {
     //When multiple GET, PUT, POSTS & DELETE EXIST on the same SERVICE, path must be aggregated
     //Lista de Brotes Clasificado
     @GET
-    @ApiOperation(value = "Get all Brotes classficado", notes = "Retrieves the list of casos classificados de un brote")
+    @ApiOperation(value = "Get all brotes clasificados", notes = "Retrieves the list of casos clasificados de un brote")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Successful", response = Caso.class, responseContainer="List"),
     })
-    @Path("/listCasoClassificado/{BroteId}")
+    @Path("/listCasoClasificado/{BroteId}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getListaClassificada(@PathParam("BroteId") String BroteId) {
         List<Caso> listacasos = new LinkedList<>();
         if (BroteId.isEmpty()) {return Response.status(500).entity(null).build();}
         Brote brote = manager.getBrote(BroteId);
         if(brote == null) {return Response.status(500).entity(null).build();}
-        listacasos = manager.getListaCasosClassificadoBrota(BroteId);
+        listacasos = manager.getListaCasosClasificadoBrote(BroteId);
         GenericEntity<List<Caso>> entity = new GenericEntity<List<Caso>>(listacasos) {};
         return Response.status(201).entity(entity).build();
     }
@@ -91,12 +91,12 @@ public class Covid19Service {
 
     //Añadir un Brote
     @POST
-    @ApiOperation(value = "create a new brote", notes = "Adds a new brote")
+    @ApiOperation(value = "Create a new brote", notes = "Adds a new brote")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Successful", response=Brote.class),
             @ApiResponse(code = 500, message = "Validation Error")
     })
-    @Path("/addUser/{name}")
+    @Path("/addBrote/{name}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response newUser(@PathParam("name") String nameBrote ) {
         if (nameBrote.isEmpty())  return Response.status(500).entity(new Brote()).build();

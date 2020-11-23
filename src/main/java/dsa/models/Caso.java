@@ -13,14 +13,14 @@ public class Caso {
     String correo;
     String direccion;
     Date fechaNacimiento, fechaInforme;
-    String nivelRiesgo, classificacion;
+    String nivelRiesgo, clasificacion;
     int telefono;
     //Constructor vacio
     public Caso(){
     }
 
     //Constructor caso
-    public Caso( String idCaso,String nombre, String apellidos, String genero, String correo, String direccion, Date fechaNacimiento,Date fechaInforme, String nivelRiesgo, String classificacion, int telefono) {
+    public Caso(String idCaso, String nombre, String apellidos, String genero, String correo, String direccion, Date fechaNacimiento, Date fechaInforme, String nivelRiesgo, String clasificacion, int telefono) {
         this.fechaInforme = fechaInforme;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -30,7 +30,7 @@ public class Caso {
         this.direccion = direccion;
         this.fechaNacimiento = fechaNacimiento;
         this.nivelRiesgo = nivelRiesgo;
-        this.classificacion = classificacion;
+        this.clasificacion = clasificacion;
         this.telefono = telefono;
     }
     public String getNombre() {
@@ -105,12 +105,12 @@ public class Caso {
         this.nivelRiesgo = nivelRiesgo;
     }
 
-    public String getClassificacion() {
-        return classificacion;
+    public String getClasificacion() {
+        return clasificacion;
     }
 
-    public void setClassificacion(String classificacion) {
-        this.classificacion = classificacion;
+    public void setClasificacion(String clasificacion) {
+        this.clasificacion = clasificacion;
     }
 
     public int getTelefono() {
